@@ -1,5 +1,4 @@
 from multiprocessing import Pool
-from tqdm import tqdm
 
 obstacles = set()
 f = open("inputs/6.txt").read().split()
@@ -11,6 +10,20 @@ for y, line in enumerate(f):
             obstacles.add((y, x))
         elif char == "^":
             start_guard = (y, x)
+
+guard = start_guard
+visited = set()
+direction = (-1, 0)
+
+while 0 <= guard[0] < height and 0 <= guard[1] < width:
+    visited.add(guard)
+    new_guard = (guard[0] + direction[0], guard[1] + direction[1])
+
+    if new_guard in obstacles:
+        direction = (direction[1], -direction[0])
+        state = (guard, direction)
+    else:
+        guard = new_guard
 
 def is_loop(y, x):
     guard = start_guard
@@ -33,7 +46,7 @@ def is_loop(y, x):
     return 0
 
 with Pool() as p:
-    positions = [(y, x) for y in range(height) for x in range(width)]
-    part_b = sum(p.starmap(is_loop, positions))
+    part_b = sum(p.starmap(is_loop, visited))
 
+print("Part A:", len(visited))
 print("Part B:", part_b)
