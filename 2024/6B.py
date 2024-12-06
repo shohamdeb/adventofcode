@@ -14,12 +14,10 @@ for y, line in enumerate(f):
 
 def is_loop(y, x):
     guard = start_guard
-    visited = set()
     turns = set() # store guard state i.e. pos and direction
     direction = (-1, 0)
 
     while 0 <= guard[0] < height and 0 <= guard[1] < width:
-        visited.add(guard)
         new_guard = (guard[0] + direction[0], guard[1] + direction[1])
 
         if new_guard in obstacles or new_guard == (y, x):
