@@ -1,7 +1,6 @@
 from collections import defaultdict as dd
 from functools import cmp_to_key
 
-reached_split = False
 rules = dd(set)
 
 def cmp(x, y):
@@ -14,7 +13,7 @@ r_data, u_data = open("inputs/5.txt").read().split("\n\n")
 
 for line in r_data.split():
     x, y = map(int, line.split("|"))
-    rules[y].add(x) # backwards
+    rules[y].add(x) # store backwards
 
 for line in u_data.split():
     banned = set()
