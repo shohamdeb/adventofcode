@@ -24,6 +24,8 @@ def check(line):
 
         if ans == target:
             return target
+        elif ans > target:
+            continue
 
     return 0
 

@@ -19,5 +19,7 @@ for line in open("inputs/7.txt"):
         if ans == target:
             part_a += target
             break
+        elif ans > target:
+            continue
 
 print("Part A:", part_a)
